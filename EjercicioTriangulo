@@ -1,0 +1,70 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class EjercicioTriangulo extends JFrame implements ActionListener {
+    // Componentes de la interfaz gráfica
+    private JTextField txtLado;
+    private JLabel lblPerimetro;
+    private JLabel lblAltura;
+    private JLabel lblArea;
+    private JButton btnCalcular;
+
+    public EjercicioTriangulo() {
+        // Configurar la ventana
+        setTitle("Calculadora de Triangulo Equilatero");
+        setSize(800, 400);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Crear y configurar los componentes
+        txtLado = new JTextField(5);
+        btnCalcular = new JButton("Calcular");
+        btnCalcular.addActionListener(this);
+        lblPerimetro = new JLabel("Perimetro: ");
+        lblAltura = new JLabel("Altura: ");
+        lblArea = new JLabel("Area: ");
+
+        // Crear el panel y agregar los componentes
+        JPanel panel = new JPanel(new GridLayout(6, 1));
+        panel.add(new JLabel("Lado del Triangulo:"));
+        panel.add(txtLado);
+        panel.add(new JLabel(""));
+        panel.add(btnCalcular);
+        panel.add(lblPerimetro);
+        panel.add(new JLabel(""));
+        panel.add(lblAltura);
+        panel.add(new JLabel(""));
+        panel.add(lblArea);
+
+        // Agregar el panel a la ventana
+        add(panel);
+
+        // Mostrar la ventana
+        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btnCalcular) {
+        // Obtener el valor del lado ingresado por el usuario
+        double lado = Double.parseDouble(txtLado.getText());
+
+        // Calcular el perímetro, la altura y el área del triángulo
+        double perimetro = 3 * lado;
+        double altura = Math.sqrt(3) / 2 * lado;
+        double area = (Math.sqrt(3) / 4) * lado * lado;
+
+        // Muestrame el valor de las variables
+        lblPerimetro.setText("Perimetro: " + perimetro);
+        lblAltura.setText("Altura: " + altura);
+        lblArea.setText("Area: " + area);
+        }
+    }
+
+    public static void main(String[] args) {
+        EjercicioTriangulo ejercicioTriangulo = new EjercicioTriangulo();
+    }
+}
+
